@@ -1,0 +1,257 @@
+:root {
+    --primary: #2f6f4f;
+    --primary-dark: #234f38;
+    --danger: #b23b3b;
+    --bg: #f6f7f5;
+    --card-bg: #ffffff;
+    --border: #dfe3e0;
+    --text: #232823;
+    --text-muted: #6b7269;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Base link styling for plain text links, instead of the browser's default
+   blue. Button-styled links (.btn) are excluded: a:hover outranks
+   .btn-primary, so without the exclusion hovering "+ Add recipe" would turn
+   its text dark green on a dark green background. :where() keeps the
+   exclusion from adding specificity, so .nav-links a still wins. */
+a:where(:not(.btn)) {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+a:where(:not(.btn)):hover { color: var(--primary-dark); text-decoration: underline; }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-dark);
+    color: #fff;
+    padding: 14px 24px;
+    flex-wrap: wrap;
+}
+
+.nav-brand { font-weight: 700; }
+
+.nav-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.nav-links a {
+    color: #eaf2ec;
+    text-decoration: none;
+}
+
+.nav-links a:hover { text-decoration: underline; }
+
+.nav-user {
+    color: #b9d3c4;
+    font-size: 0.9em;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+}
+
+h1 { margin-top: 0; }
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.week-nav { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.week-label { font-weight: 600; color: var(--text-muted); }
+
+.flash-wrap { margin-bottom: 18px; }
+
+.flash {
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.flash-error { background: #fbe6e6; color: var(--danger); border: 1px solid #eec6c6; }
+.flash-success { background: #e6f3ea; color: var(--primary-dark); border: 1px solid #c7e3d1; }
+
+.auth-card, .form-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    max-width: 420px;
+    margin: 40px auto;
+}
+
+.form-card-wide { max-width: 560px; }
+
+form label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+}
+
+form textarea { resize: vertical; }
+
+.btn {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95em;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 18px;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary { background: #eceeec; color: var(--text); margin-left: 0; }
+
+.btn-small { margin-top: 0; padding: 7px 12px; font-size: 0.85em; }
+
+.link-btn {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.95em;
+    text-decoration: underline;
+}
+
+.auth-switch { margin-top: 18px; font-size: 0.9em; color: var(--text-muted); }
+
+.stat-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    flex: 1;
+    min-width: 160px;
+}
+
+.stat-label { font-size: 0.85em; color: var(--text-muted); }
+.stat-value { font-size: 1.8em; font-weight: 700; margin-top: 4px; }
+.stat-target { font-size: 0.5em; font-weight: 500; color: var(--text-muted); }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.table th, .table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95em;
+}
+
+.table th { background: #eef1ee; color: var(--text-muted); font-weight: 600; }
+
+.table tr.over-budget { background: #fdf1f1; }
+.table tr.checked-row { color: var(--text-muted); text-decoration: line-through; }
+
+.row-actions { display: flex; gap: 10px; align-items: center; }
+.row-actions a { color: var(--primary-dark); }
+
+.empty-state { color: var(--text-muted); }
+.hint { color: var(--text-muted); font-size: 0.9em; }
+.hint code { background: #eef1ee; padding: 1px 5px; border-radius: 4px; }
+
+.plan-grid-wrap { overflow-x: auto; margin-bottom: 16px; }
+.plan-grid { min-width: 720px; }
+.plan-grid select { min-width: 130px; }
+.plan-grid .meal-label { font-weight: 600; white-space: nowrap; }
+.day-date { font-weight: 400; color: var(--text-muted); font-size: 0.85em; }
+
+.checkbox-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+}
+.checkbox-btn:hover { background: #eef1ee; }
+
+.save-indicator {
+    display: block;
+    font-size: 0.75em;
+    height: 1.2em;
+    margin-top: 2px;
+    color: var(--text-muted);
+}
+.save-indicator.saving { color: var(--text-muted); }
+.save-indicator.saved { color: var(--primary); font-weight: 600; }
+.save-indicator.error { color: var(--danger); }
+
+/* ---------- Responsive layout (phone / narrow viewport) ---------- */
+@media (max-width: 640px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .nav-links {
+        width: 100%;
+        gap: 10px 14px;
+    }
+    .container { padding: 16px 12px 48px; }
+
+    .stat-row { flex-direction: column; }
+    .stat-card { min-width: 0; }
+
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .week-nav { width: 100%; justify-content: space-between; }
+
+    .auth-card, .form-card, .form-card-wide {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .table th, .table td { padding: 8px; font-size: 0.88em; }
+
+    /* Wide grids (meal plan) already scroll horizontally via
+       .plan-grid-wrap; everything else reflows to single-column. */
+}

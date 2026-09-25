@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Add recipe{% endblock %}
+{% block content %}
+<div class="form-card form-card-wide">
+    <h1>Add recipe</h1>
+    <form method="POST">
+        <label for="name">Recipe name</label>
+        <input type="text" id="name" name="name" required autofocus>
+
+        <label for="servings">Servings</label>
+        <input type="number" step="1" min="1" id="servings" name="servings" value="1" required>
+
+        <p class="hint">Enter calories and macros for <strong>one serving</strong>.</p>
+
+        <label for="calories">Calories (per serving)</label>
+        <input type="number" step="1" min="1" id="calories" name="calories" required>
+
+        <label for="protein_g">Protein (g, per serving)</label>
+        <input type="number" step="0.1" min="0" id="protein_g" name="protein_g" value="0" required>
+
+        <label for="carbs_g">Carbs (g, per serving)</label>
+        <input type="number" step="0.1" min="0" id="carbs_g" name="carbs_g" value="0" required>
+
+        <label for="fat_g">Fat (g, per serving)</label>
+        <input type="number" step="0.1" min="0" id="fat_g" name="fat_g" value="0" required>
+
+        <label for="ingredients">Ingredients (whole recipe, one per line)</label>
+        <textarea id="ingredients" name="ingredients" rows="6" placeholder="Rice, 200, g&#10;Chicken breast, 300, g&#10;Olive oil, 1, tbsp" required></textarea>
+        <p class="hint">Format: <code>name, quantity, unit</code> &mdash; one ingredient per line. These quantities are used to build your grocery list.</p>
+
+        <button type="submit" class="btn btn-primary">Save recipe</button>
+        <a href="{{ url_for('recipes') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

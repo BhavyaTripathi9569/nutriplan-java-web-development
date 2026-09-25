@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard &mdash; {{ today }}</h1>
+
+{% if recipe_count == 0 %}
+<p class="empty-state">You haven't added any recipes yet. <a href="{{ url_for('add_recipe') }}" class="btn btn-primary btn-small">Add your first recipe</a>, then build a <a href="{{ url_for('plan') }}">meal plan</a>.</p>
+{% endif %}
+
+<div class="stat-row">
+    <div class="stat-card">
+        <div class="stat-label">Calories planned today</div>
+        <div class="stat-value">{{ "%.0f"|format(totals.calories) }} <span class="stat-target">/ {{ "%.0f"|format(goal.daily_calories) }}</span></div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Protein (g)</div>
+        <div class="stat-value">{{ "%.0f"|format(totals.protein_g) }} <span class="stat-target">/ {{ "%.0f"|format(goal.daily_protein_g) }}</span></div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Carbs (g)</div>
+        <div class="stat-value">{{ "%.0f"|format(totals.carbs_g) }} <span class="stat-target">/ {{ "%.0f"|format(goal.daily_carbs_g) }}</span></div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Fat (g)</div>
+        <div class="stat-value">{{ "%.0f"|format(totals.fat_g) }} <span class="stat-target">/ {{ "%.0f"|format(goal.daily_fat_g) }}</span></div>
+    </div>
+</div>
+
+{% if over_calories %}
+<div class="flash flash-error">Today's planned meals go over your calorie goal.</div>
+{% endif %}
+
+<h2>Today's planned meals</h2>
+{% if today_entries %}
+<table class="table">
+    <thead><tr><th>Meal</th><th>Recipe</th><th>Calories</th></tr></thead>
+    <tbody>
+        {% for e in today_entries %}
+        <tr>
+            <td>{{ e.meal_type }}</td>
+            <td>{{ e.recipe.name }}</td>
+            <td>{{ "%.0f"|format(e.recipe.calories) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty-state">Nothing planned for today. <a href="{{ url_for('plan') }}">Go to Meal Plan</a>.</p>
+{% endif %}
+
+<h2>This week &mdash; planned calories</h2>
+<table class="table">
+    <thead><tr><th>Date</th><th>Calories</th></tr></thead>
+    <tbody>
+        {% for row in week_rows %}
+        <tr class="{{ 'over-budget' if row.calories > goal.daily_calories else '' }}">
+            <td>{{ row.date }}</td>
+            <td>{{ "%.0f"|format(row.calories) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{{ url_for('grocery_list') }}">View this week's grocery list &rarr;</a></p>
+{% endblock %}

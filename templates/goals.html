@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Goals{% endblock %}
+{% block content %}
+<div class="form-card">
+    <h1>Daily goals</h1>
+    <p class="hint">These targets drive the dashboard progress numbers.</p>
+    <form method="POST">
+        <label for="daily_calories">Daily calories</label>
+        <input type="number" step="1" min="1" id="daily_calories" name="daily_calories" value="{{ goal.daily_calories }}" required>
+
+        <label for="daily_protein_g">Daily protein (g)</label>
+        <input type="number" step="0.1" min="0.1" id="daily_protein_g" name="daily_protein_g" value="{{ goal.daily_protein_g }}" required>
+
+        <label for="daily_carbs_g">Daily carbs (g)</label>
+        <input type="number" step="0.1" min="0.1" id="daily_carbs_g" name="daily_carbs_g" value="{{ goal.daily_carbs_g }}" required>
+
+        <label for="daily_fat_g">Daily fat (g)</label>
+        <input type="number" step="0.1" min="0.1" id="daily_fat_g" name="daily_fat_g" value="{{ goal.daily_fat_g }}" required>
+
+        <button type="submit" class="btn btn-primary">Save goals</button>
+    </form>
+</div>
+{% endblock %}

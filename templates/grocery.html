@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Grocery List{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>Grocery List</h1>
+    <div class="week-nav">
+        <a href="{{ url_for('grocery_list', week=prev_week) }}" class="btn btn-secondary btn-small">&larr; Previous week</a>
+        <span class="week-label">{{ week_start }} &ndash; {{ week_end }}</span>
+        <a href="{{ url_for('grocery_list', week=next_week) }}" class="btn btn-secondary btn-small">Next week &rarr;</a>
+    </div>
+</div>
+
+<p class="hint">Auto-generated from every recipe on your <a href="{{ url_for('plan', week=week_start.isoformat()) }}">meal plan</a> for this week. Quantities are summed when the same ingredient appears more than once.</p>
+
+{% if rows %}
+<table class="table">
+    <thead><tr><th></th><th>Ingredient</th><th>Quantity needed</th></tr></thead>
+    <tbody>
+        {% for row in rows %}
+        <tr class="{{ 'checked-row' if row.checked else '' }}">
+            <td>
+                <button type="button" class="checkbox-btn"
+                        data-grocery-key="{{ row.key }}"
+                        data-week-start="{{ week_start.isoformat() }}"
+                        aria-label="Toggle purchased">{{ "✓" if row.checked else "" }}</button>
+                <noscript>
+                    <form method="POST" action="{{ url_for('toggle_grocery_item') }}">
+                        <input type="hidden" name="week_start" value="{{ week_start.isoformat() }}">
+                        <input type="hidden" name="key" value="{{ row.key }}">
+                        <button type="submit" class="checkbox-btn" aria-label="Toggle purchased (no-JS)">{{ "✓" if row.checked else "" }}</button>
+                    </form>
+                </noscript>
+            </td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.quantity|round(1) }} {{ row.unit }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="empty-state">No meals planned for this week yet. <a href="{{ url_for('plan', week=week_start.isoformat()) }}">Build a meal plan</a> first.</p>
+{% endif %}
+{% endblock %}
