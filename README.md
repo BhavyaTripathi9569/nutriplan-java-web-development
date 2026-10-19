@@ -11,17 +11,17 @@ planning rather than the whole point of the app.
 
 ## 🚀 Features
 
-- ✅ **User accounts** — register / log in / log out, with hashed passwords
+- ✅ **User accounts**: register / log in / log out, with hashed passwords
   (Flask-Login + Werkzeug), each user's data fully private
-- 📖 **Recipe library** — name, servings, calories/protein/carbs/fat per
+- 📖 **Recipe library**: name, servings, calories/protein/carbs/fat per
   serving, and a free-text ingredient list (name, quantity, unit)
-- 📅 **Weekly meal-plan grid** — assign a recipe to each day × meal-type slot
+- 📅 **Weekly meal-plan grid**: assign a recipe to each day × meal-type slot
   (Breakfast/Lunch/Dinner/Snack), with previous/next week navigation
-- 🛒 **Auto-generated grocery list** — aggregates ingredients across every
+- 🛒 **Auto-generated grocery list**: aggregates ingredients across every
   recipe planned for the selected week, summing quantities when the same
   ingredient (name + unit) appears more than once, with a per-item
   "purchased" toggle that's remembered per week
-- 🎯 **Goals & dashboard** — daily nutrition targets vs. today's planned
+- 🎯 **Goals & dashboard**: daily nutrition targets vs. today's planned
   totals, plus a 7-day planned-calorie overview
 - ⚡ **Two dynamic, JavaScript-driven interactions with the backend** (see
   `static/app.js`): assigning a recipe to a meal-plan slot autosaves
@@ -30,7 +30,7 @@ planning rather than the whole point of the app.
   — neither requires a full page reload. Both fall back to plain HTML
   `<form>` submits if JavaScript is disabled, so the app is fully usable
   either way.
-- 📱 **Responsive layout** — the nav, stat cards, and forms reflow to a
+- 📱 **Responsive layout**: the nav, stat cards, and forms reflow to a
   single column under 640px width; the meal-plan grid scrolls horizontally
   instead of breaking.
 
@@ -42,10 +42,10 @@ planning rather than the whole point of the app.
   automatically), Flask-Login (session-based auth, hashed passwords)
 - **Front-end:** server-rendered Jinja2/HTML templates + hand-written CSS +
   vanilla JavaScript (`static/app.js`) for the two AJAX interactions above
-  — no front-end framework, no build step
+  no front-end framework, no build step
 - **Testing:** pytest (13 automated end-to-end cases against the real Flask
   routes and a throwaway SQLite database)
-- **No external APIs** — nutrition data is entered manually per recipe, so
+- **No external APIs**: nutrition data is entered manually per recipe, so
   the app runs identically with or without internet access, one less thing
   to fail during a live demo
 
@@ -78,17 +78,17 @@ planning rather than the whole point of the app.
 5. Visit `http://127.0.0.1:5000` in your browser.
 
 A SQLite database file (`nutriplan.db`) is created automatically on first
-run — no manual database setup or environment variables needed.
+run no manual database setup or environment variables needed.
 
 ---
 
 ## 🎯 Usage
 
 1. Register an account, then log in.
-2. Go to **Recipes → Add recipe** and add 2–3 recipes, including
+2. Go to **Recipes -> Add recipe** and add 2–3 recipes, including
    ingredients in the `name, quantity, unit` format (e.g.
    `Chicken breast, 300, g`).
-3. Go to **Meal Plan**, assign recipes to a few day/meal slots — each
+3. Go to **Meal Plan**, assign recipes to a few day/meal slots each
    assignment autosaves instantly.
 4. Go to **Grocery List** to see the ingredients from that week's plan
    aggregated into one shopping list. Click an item's checkbox to mark it
