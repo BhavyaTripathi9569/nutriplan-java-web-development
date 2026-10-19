@@ -27,7 +27,7 @@ planning rather than the whole point of the app.
   `static/app.js`): assigning a recipe to a meal-plan slot autosaves
   instantly via `fetch()` (`POST /api/plan/slot`), and checking off a
   grocery item toggles instantly via `fetch()` (`POST /api/grocery/toggle`)
-  — neither requires a full page reload. Both fall back to plain HTML
+  neither requires a full page reload. Both fall back to plain HTML
   `<form>` submits if JavaScript is disabled, so the app is fully usable
   either way.
 - 📱 **Responsive layout**: the nav, stat cards, and forms reflow to a
