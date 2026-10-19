@@ -158,7 +158,7 @@ nutriplan/
 ## 📝 Design Note: How the Grocery List Is Built
 
 Each time a recipe is placed on the weekly plan, its full ingredient list
-(as entered for the whole recipe) is added to that week's grocery list —
+(as entered for the whole recipe) is added to that week's grocery list 
 the same recipe used twice in a week doubles its ingredients. This keeps
 the aggregation logic simple and easy to explain, at the cost of not
 scaling ingredient quantities by the number of servings actually planned.
